@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
-import { ArrowLeft, ArrowRight, BookOpen, Check, CheckCircle2, Circle, ClipboardCheck, FileText, Lightbulb, ListChecks, RotateCcw, Sparkles } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BookOpen, BookOpenText, Check, CheckCircle2, Circle, ClipboardCheck, FileText, Lightbulb, ListChecks, RotateCcw, Sparkles } from 'lucide-react'
 import { getStage, type Week, type WeekProgress } from '@/data'
+import { getLessonGuide } from '@/lessons'
 import { canCompleteWeek } from '@/lib/progress'
 import { makeWeekQuiz } from '@/lib/quiz'
+import { LessonMaterial } from './LessonMaterial'
 import { QuizRunner } from './QuizRunner'
 
-type Tab = 'plan' | 'concepts' | 'quiz' | 'notes'
+type Tab = 'material' | 'plan' | 'concepts' | 'quiz' | 'notes'
 
 export function Lesson({ week, progress, reviewLater, onChange, onToggleReview, onNavigate }: {
   week: Week
@@ -15,13 +17,13 @@ export function Lesson({ week, progress, reviewLater, onChange, onToggleReview, 
   onToggleReview: (key: string) => void
   onNavigate: (id: number) => void
 }) {
-  const [tab, setTab] = useState<Tab>('plan')
+  const [tab, setTab] = useState<Tab>('material')
   const stage = getStage(week.stageId)
   const quiz = makeWeekQuiz(week)
   const ready = canCompleteWeek(week, progress)
   const complete = Boolean(progress.completedAt)
 
-  useEffect(() => setTab('plan'), [week.id])
+  useEffect(() => setTab('material'), [week.id])
 
   const toggleStep = (index: number) => {
     const checked = progress.checkedSteps.includes(index)
@@ -36,6 +38,7 @@ export function Lesson({ week, progress, reviewLater, onChange, onToggleReview, 
   }
 
   const tabs: { id: Tab; label: string; icon: typeof BookOpen }[] = [
+    { id: 'material', label: 'Материал', icon: BookOpenText },
     { id: 'plan', label: 'План', icon: ListChecks },
     { id: 'concepts', label: `Понятия · ${week.concepts.length}`, icon: BookOpen },
     { id: 'quiz', label: 'Самопроверка', icon: ClipboardCheck },
@@ -63,6 +66,8 @@ export function Lesson({ week, progress, reviewLater, onChange, onToggleReview, 
           return <button key={item.id} role="tab" aria-selected={tab === item.id} className={tab === item.id ? 'is-active' : ''} onClick={() => setTab(item.id)}><Icon size={16} /> {item.label}</button>
         })}
       </div>
+
+      {tab === 'material' && <LessonMaterial week={week} guide={getLessonGuide(week.id)} onOpenPlan={() => setTab('plan')} onOpenConcepts={() => setTab('concepts')} onOpenQuiz={() => setTab('quiz')} />}
 
       {tab === 'plan' && (
         <div className="lesson-section">
