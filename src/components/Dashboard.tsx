@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpen, CheckCircle2, Clock3, Flame, Layers3, Target } from 'lucide-react'
+import { ArrowRight, BookOpen, CheckCircle2, Clock3, Flame, Layers3, Network, Target } from 'lucide-react'
 import { getStage, stages, totalConcepts, totalSteps, weeks, type ProgressState } from '@/data'
 import { getWeekProgress, isWeekComplete } from '@/lib/progress'
 import { studyPrinciples } from '@/data/resources'
@@ -30,8 +30,8 @@ export function Dashboard({ state, onContinue, onOpenWeek, onTimerFinish }: {
       <section className="dashboard-hero" style={{ '--stage-color': currentStage.color } as React.CSSProperties}>
         <div className="dashboard-hero__copy">
           <div className="dashboard-kicker"><span /> Твой следующий шаг</div>
-          <h1>AI-инженеринг.<br /><em>Без пропусков.</em></h1>
-          <p>От первой Python-программы до защищённого AI-сервиса: теория простыми словами, практика и проверяемый результат каждую неделю.</p>
+          <h1>Своя нейросеть.<br /><em>Свой код.</em></h1>
+          <p>За 53 недели вы напишете Neuro/52 с нуля: forward и backward pass, обучение на MNIST, собственные слои, API, веб-интерфейс и production-деплой.</p>
           <button className="button button--hero" onClick={onContinue}>Продолжить неделю {current.id} <ArrowRight size={19} /></button>
         </div>
         <div className="dashboard-hero__visual" aria-hidden="true">
@@ -53,9 +53,24 @@ export function Dashboard({ state, onContinue, onOpenWeek, onTimerFinish }: {
         <div className="stat-item"><Target size={20} /><strong>{state.weeklyGoal} ч</strong><span>недельная цель</span></div>
       </section>
 
+      <section className="neuro-project">
+        <div className="neuro-project__copy">
+          <div className="section-overline"><Network size={16} /> Один проект на весь курс</div>
+          <h2>Neuro/52 — нейросеть,<br />которую вы напишете сами</h2>
+          <p>Не набор несвязанных упражнений. Каждая неделя добавляет работающий модуль в один репозиторий: от первого нейрона до собственной обученной сети, которая распознаёт нарисованную пользователем цифру.</p>
+          <div className="neuro-project__tags"><span>Свой forward pass</span><span>Свой backpropagation</span><span>Свои слои и optimizers</span><span>API + интерфейс</span></div>
+        </div>
+        <div className="neuro-project__flow" aria-label="Путь данных в нейросети Neuro/52">
+          <span>28 × 28<small>пикселей</small></span><i />
+          <span>784 → 128<small>свои слои</small></span><i />
+          <span>10<small>вероятностей</small></span>
+          <strong>Без готового NN-фреймворка в ядре</strong>
+        </div>
+      </section>
+
       <div className="dashboard-grid">
         <section className="roadmap-section">
-          <div className="section-title-row"><div><span className="section-overline">Маршрут</span><h2>8 этапов. Один работающий путь.</h2></div><Layers3 size={28} /></div>
+          <div className="section-title-row"><div><span className="section-overline">Маршрут</span><h2>8 этапов. Одна нейросеть.</h2></div><Layers3 size={28} /></div>
           <div className="roadmap-list">
             {stages.map((stage) => {
               const stageWeeks = weeks.filter((week) => week.stageId === stage.id)
@@ -64,7 +79,7 @@ export function Dashboard({ state, onContinue, onOpenWeek, onTimerFinish }: {
               return (
                 <button className="roadmap-row" key={stage.id} onClick={() => onOpenWeek(first.id)}>
                   <span className="roadmap-row__number" style={{ color: stage.color }}>{String(stage.number).padStart(2, '0')}</span>
-                  <span className="roadmap-row__main"><strong>{stage.title}</strong><small>{stage.description}</small><span className="roadmap-row__bar"><i style={{ width: `${(done / stageWeeks.length) * 100}%`, backgroundColor: stage.color }} /></span></span>
+                  <span className="roadmap-row__main"><strong>{stage.title}</strong><small>{stage.description}</small><span className="roadmap-row__artifact">{stage.projectResult}</span><span className="roadmap-row__bar"><i style={{ width: `${(done / stageWeeks.length) * 100}%`, backgroundColor: stage.color }} /></span></span>
                   <span className="roadmap-row__meta"><strong>{done}/{stageWeeks.length}</strong><small>{stage.range}</small></span>
                   <ArrowRight size={18} />
                 </button>

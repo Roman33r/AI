@@ -102,6 +102,14 @@ export function LessonMaterial({ week, guide, onOpenPlan, onOpenConcepts, onOpen
 }) {
   return (
     <div className="lesson-section lesson-guide">
+      <section className="project-milestone" aria-labelledby={`project-week-${week.id}`}>
+        <div className="project-milestone__label"><Network size={18} /> Сквозной проект · Neuro/52 <span>Шаг {week.id + 1} / 53</span></div>
+        <h2 id={`project-week-${week.id}`}>{week.project.artifact}</h2>
+        <p>{week.goal}</p>
+        <div className="project-milestone__files" aria-label="Файлы проектного шага">
+          {week.project.files.map((file) => <code key={file}>{file}</code>)}
+        </div>
+      </section>
       <header className="guide-intro">
         <div className="guide-intro__label"><BookMarked size={18} /> Полный учебный материал</div>
         <h2>Сначала понять модель,<br />затем воспроизвести практику</h2>

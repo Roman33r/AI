@@ -1,6 +1,6 @@
-import type { Week } from './types'
+import type { WeekBlueprint } from './types'
 
-export const mlWeeks: Week[] = [
+export const mlWeeks: WeekBlueprint[] = [
   {
     id: 9, stageId: 'ml', title: 'Постановка ML-задачи, данные и baseline', hours: '16–20 часов',
     goal: 'Превращать продуктовую проблему в корректную задачу машинного обучения и не обманываться на проверке.',

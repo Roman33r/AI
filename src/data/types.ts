@@ -3,6 +3,11 @@ export type Concept = {
   definition: string
 }
 
+export type ProjectMilestone = {
+  artifact: string
+  files: string[]
+}
+
 export type Week = {
   id: number
   stageId: string
@@ -13,7 +18,11 @@ export type Week = {
   task: string
   outcome: string
   hours: string
+  project: ProjectMilestone
 }
+
+export type WeekBlueprint = Omit<Week, 'project'>
+export type ProjectWeekPlan = Pick<Week, 'id' | 'goal' | 'steps' | 'task' | 'outcome' | 'project'>
 
 export type Stage = {
   id: string
@@ -21,6 +30,7 @@ export type Stage = {
   title: string
   shortTitle: string
   description: string
+  projectResult: string
   range: string
   color: string
   softColor: string

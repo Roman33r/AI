@@ -15,7 +15,7 @@ export default defineConfig({
       manifest: {
         name: 'AI / 52 — интерактивная программа',
         short_name: 'AI / 52',
-        description: '52 недели AI-инжиниринга с практикой и самоконтролем',
+        description: '53 недели AI-инжиниринга и собственная нейросеть Neuro/52 с нуля',
         theme_color: '#173a3a',
         background_color: '#f8f8f8',
         display: 'standalone',

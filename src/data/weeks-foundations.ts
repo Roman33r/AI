@@ -1,6 +1,6 @@
-import type { Week } from './types'
+import type { WeekBlueprint } from './types'
 
-export const foundationWeeks: Week[] = [
+export const foundationWeeks: WeekBlueprint[] = [
   {
     id: 0, stageId: 'setup', title: 'Компьютер, терминал, Python и Git', hours: '6–8 часов',
     goal: 'Настроить рабочее место и научиться запускать программу, управлять файлами и сохранять историю изменений.',

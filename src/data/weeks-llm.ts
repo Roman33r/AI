@@ -1,6 +1,6 @@
-import type { Week } from './types'
+import type { WeekBlueprint } from './types'
 
-export const llmWeeks: Week[] = [
+export const llmWeeks: WeekBlueprint[] = [
   {
     id: 25, stageId: 'llm', title: 'Работа с языковыми моделями через API', hours: '15–20 часов',
     goal: 'Использовать LLM как полезный, но ненадёжный компонент программной системы с измеримой задержкой и стоимостью.',

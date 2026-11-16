@@ -1,6 +1,6 @@
-import type { Week } from './types'
+import type { WeekBlueprint } from './types'
 
-export const finalWeeks: Week[] = [
+export const finalWeeks: WeekBlueprint[] = [
   {
     id: 43, stageId: 'capstone', title: 'Продуктовые требования и архитектура', hours: '16–20 часов',
     goal: 'До разработки определить пользовательскую ценность, границы MVP, критерии успеха и угрозы.',

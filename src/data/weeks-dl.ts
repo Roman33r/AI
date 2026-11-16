@@ -1,6 +1,6 @@
-import type { Week } from './types'
+import type { WeekBlueprint } from './types'
 
-export const dlWeeks: Week[] = [
+export const dlWeeks: WeekBlueprint[] = [
   {
     id: 17, stageId: 'dl', title: 'Тензоры и автоматическое дифференцирование', hours: '15–20 часов',
     goal: 'Освоить основные объекты PyTorch и понять, как фреймворк вычисляет градиенты.',
